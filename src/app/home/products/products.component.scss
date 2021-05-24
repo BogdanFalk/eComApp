@@ -1,0 +1,39 @@
+.items-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+
+  // overflow-y: hidden;
+  .product-card {
+    cursor: pointer;
+    box-sizing: border-box;
+    min-width: 300px;
+    max-width: 350px;
+    min-height: 500px;
+    max-height: 550px;
+    margin: 20px;
+  }
+}
+
+.product-avatar-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+mat-card {
+  mat-card-actions {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.product-paginator {
+  font-size: 20px;
+  flex-basis: 100%;
+  padding-top: 30px;
+}
+
+.item-count-span {
+  line-height: 35px;
+  font-size: 15px;
+}

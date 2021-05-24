@@ -1,0 +1,120 @@
+<div class="home-container">
+  <div class="top-controls-container">
+    <div class="search-container">
+      <mat-form-field class="search-from-field">
+        <mat-label class="search-form-field-label"
+          >Search for products</mat-label
+        >
+        <input
+          matInput
+          #searchInput
+          placeholder="Ex. Adibas"
+          value="{{searchValue}}"
+          (keyup.enter)="onEnter($event)"
+          (keyup)="onSearchChange()"
+        />
+      </mat-form-field>
+    </div>
+    <div class="search-filter pagination-per-page">
+      <p class="filter-text">
+        <mat-form-field appearance="legacy">
+          <mat-label>Products</mat-label>
+          <mat-select [(value)]="numberPerPageControl" name="numberPerPage">
+            <mat-option
+              *ngFor="let pageOptions of numberPerPage"
+              [value]="pageOptions.value"
+            >
+              {{pageOptions.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+    </div>
+    <div>
+      <button
+        mat-fab
+        color="primary"
+        aria-label="Example icon button with a delete icon"
+        (click)="showCart()"
+      >
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="product-container">
+    <div class="filters-container">
+      <div class="filters-availability">
+        <p class="filters-header">Disponibilty</p>
+        <mat-checkbox
+          class="search-filter checkbox-filter"
+          [color]="'primary'"
+          (change)="inStockChecked($event)"
+        >
+          <p class="filter-text">In Stock</p>
+        </mat-checkbox>
+        <mat-checkbox
+          class="search-filter checkbox-filter"
+          [color]="'primary'"
+          (change)="OnSaleChecked($event)"
+        >
+          <p class="filter-text">On Sale</p>
+        </mat-checkbox>
+        <mat-checkbox
+          class="search-filter checkbox-filter"
+          [color]="'primary'"
+          (change)="NewChecked($event)"
+        >
+          <p class="filter-text">New</p>
+        </mat-checkbox>
+      </div>
+    </div>
+    <app-products
+      [productsPerPage]="numberPerPageControl"
+      [search]="searchValue"
+      [inStockChecked]="isInStockChecked"
+      [newChecked]="isNewChecked"
+      [onSaleChecked]="isOnSaleChecked"
+      (refreshShoppingCart)="refreshCart()"
+      [clearCart]="clearCartProducts"
+    ></app-products>
+  </div>
+  <div [ngClass]="isCartShown ? 'shopping-cart':'shopping-cart-hidden'">
+    <h2 class="shopping-cart-title">
+      Shopping <span style="color: #673ab7;">Cart</span>
+    </h2>
+    <button (click)="clearCart()" mat-stroked-button color="warn">
+      Clear Cart
+    </button>
+    <mat-list>
+      <mat-list-item
+        class="shopping-cart-item"
+        *ngFor="let productInCart of cart"
+      >
+        <span class="shopping-cart-item-title">{{productInCart.name}}</span>
+        <mat-icon class="shopping-cart-item-art">attach_money</mat-icon>
+        <span class="shopping-cart-item-price"
+          >{{productInCart.price * productInCart.inCartCount}} lei</span
+        >
+      </mat-list-item>
+    </mat-list>
+    <div class="shopping-cart-sub">
+      <hr />
+      <div class="shopping-cart-sub-inner">
+        <h2 class="shopping-cart-item-cost">
+          Total <span style="color: #673ab7;">Cost</span>:
+          <span class="shopping-cart-item-price"
+            >{{getFullCartPrice()}} lei</span
+          >
+        </h2>
+        <button
+          [routerLink]="['/cart']"
+          class="shopping-cart-btn"
+          mat-raised-button
+          color="primary"
+        >
+          C H E C K O U T
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

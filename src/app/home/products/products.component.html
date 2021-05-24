@@ -1,0 +1,47 @@
+<div class="items-list">
+  <mat-card
+    *ngFor="let product of products;"
+    class="product-card"
+    [routerLink]="['/productPage',{productName:product.name}]"
+  >
+    <mat-card-header>
+      <div mat-card-avatar class="product-avatar-image"></div>
+      <mat-card-title>{{product.name}}</mat-card-title>
+      <mat-card-subtitle>{{product.price}}</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      mat-card-image
+      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+      alt="Photo of a Shiba Inu"
+    />
+    <mat-card-content>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="addToCart($event,product)">
+        Add to Cart
+      </button>
+      <button mat-stroked-button (click)="increaseQuantity($event,product)">
+        +
+      </button>
+      <span class="item-count-span">{{product.purchaseCount}}</span>
+      <button mat-stroked-button (click)="decreaseQuantity($event,product)">
+        -
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <ngb-pagination
+    (pageChange)="onPageChange($event)"
+    [collectionSize]="totalElements"
+    [pageSize]="numberPerPageControl"
+    [(page)]="page"
+    [maxSize]="10"
+    [rotate]="true"
+    [boundaryLinks]="true"
+    class="product-paginator d-flex justify-content-center"
+  ></ngb-pagination>
+</div>
