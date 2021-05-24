@@ -25,3 +25,15 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## To be added
+Removal of product from cart
+<br />
+Clean components (Ex: separate product card in own component)
+<br />
+Clean CSS and add Media Queries (For now works only on 2k 4k displays)
+<br />
+Finish ProductPage
+<br />
+<br />
+Time Spend so far: 50h
